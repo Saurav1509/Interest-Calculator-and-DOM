@@ -1,0 +1,21 @@
+<html>
+    <script>
+        async function populateDiv(){
+            const p = document.getElementById("principal").value;
+            const r = document.getElementById("rate").value;
+            const t = document.getElementById("time").value;
+            
+            const response = await fetch("http://localhost:3001/interest/" + p + "&" + r+ "&" + t);
+            const ans = await response.json();
+            console.log(ans);
+            document.getElementById("finalInterest").innerHTML = ans.total;
+        }
+    </script>
+    <body>
+        <input id="principal" type="text" placeholder="Principal Amount"></input> <br><br>
+        <input id="rate" type="text" placeholder="Rate in %"></input> <br><br>
+        <input id="time" type="text" placeholder="Time in years"></input> <br><br>
+        <button onclick="populateDiv()"> Calculate Interest</button> <br><br>
+        <div id="finalInterest"></div>
+    </body>
+</html>
